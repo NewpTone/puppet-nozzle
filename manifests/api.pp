@@ -6,7 +6,6 @@ class nozzle::api (
         $admin_user         = 'nozzle',
         $admin_password     = 'nova',
 ) {
-
     package { 'nozzle-api':
         ensure  =>  'present',
     }
