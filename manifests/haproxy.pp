@@ -6,7 +6,9 @@ class nozzle::haproxy {
 	exec {'modify_haprxoy':
 		command	=> "mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.orginal",
 		path	=> ['/usr/bin/', '/sbin','/bin'],
-		unless	=> "test -e /etc/haproxy/haproxy.cfg.orginal"
+		onlyif  => ["[ ! -e /etc/haproxy/haproxy.cfg.orginal ]","test -e /etc/haproxy/haproxy.cfg"],
+		logoutput   => true,
+		require		=> Package['haproxy'],
 	}
 			
 	file {'/etc/haproxy/haproxy.cfg':
@@ -19,6 +21,7 @@ class nozzle::haproxy {
         command =>  "sed -i -e 's/^ENABLED=.*/ENABLED=1/' /etc/default/haproxy",
         path    =>  ['/usr/bin/', '/sbin','/bin'],                
         require =>  Package['haproxy'],
+		logoutput   => true,
     }
 
 	
