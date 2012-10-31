@@ -1,0 +1,1 @@
+class {'nozzle::haproxy':}
