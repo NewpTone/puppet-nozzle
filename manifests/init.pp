@@ -1,7 +1,9 @@
 class nozzle {
-package {'python-nozzle':
+
+ package {'python-nozzle':
 	ensure	=> present,
  }
+
  group { 'nozzle':
     ensure  => present,
     system  => true,

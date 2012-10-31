@@ -13,10 +13,6 @@ class nozzle::worker(
         require => Package['nozzle-worker'],
  }
 
- file {'/etc/haproxy/haproxy.cfg':
-     source => 'puppet:///modules/nozzle/haproxy.cfg',
-     require => Package['haproxy'] ,
-}
 
  nozzle_config {
      'haproxy/listen':                      value => $listen,
