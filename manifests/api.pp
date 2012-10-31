@@ -11,11 +11,12 @@ class nozzle::api (
     }
 
     nozzle_config {
-        'filter:authtoken/auth_host':           value => $auth_host,
-        'filter:authtoken/auth_port':           value => $auth_port,
-        'filter:authtoken/auth_protocol':       value => $auth_protocol,
-        'filter:authtoken/admin_tenant_name':   value => $admin_tenant_name,
-        'filter:authtoken/admin_user':          value => $admin_user,
-        'filter:authtoken/admin_password':      value => $admin_password,
+        'filter:authtoken/auth_host':           value => $auth_host;
+        'filter:authtoken/auth_port':           value => $auth_port;
+        'filter:authtoken/auth_protocol':       value => $auth_protocol;
+        'filter:authtoken/admin_tenant_name':   value => $admin_tenant_name;
+        'filter:authtoken/admin_user':          value => $admin_user;
+        'filter:authtoken/admin_password':      value => $admin_password;
 
+	}	
 }
