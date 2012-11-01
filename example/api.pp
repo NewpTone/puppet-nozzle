@@ -21,9 +21,14 @@ $nova_admin_tenant_name = 'services'
 $nova_admin_auth_url    = 'http://localhost:5000/v2.0'
 $rabbit_userid          = 'guest'
 $rabbit_password        = 'nova'
+#Mysql 
+$user = 'nozzle'
+$host = 'localhost'
+$dbname = 'nozzle'
+$password = 'nozzle'
 
 
-
+node /base/ {
 	class  {'nozzle':
 		api_listen             => $api_listen, 
         server_listen          => $server_listen,
@@ -40,7 +45,9 @@ $rabbit_password        = 'nova'
 	    listen_port_range         =>  $listen_port_range,
 	    configuration_backup_dir  =>  $configuration_backup_dir,	
 	}
+}
 
+node /noozle_controller/ inherits base {
     class {'nozzle::api':
 		auth_host          =>  $api_auth_host,
         auth_port          =>  $api_auth_port,
@@ -50,7 +57,18 @@ $rabbit_password        = 'nova'
         admin_password     =>  $admin_password,
 		require			   =>  Class['nozzle']
 	}
+
+class {'nozzle::server':
+		user  => $user,
+		host  => $host,
+		dbname => $dbname,
+		password => $password,
+	}
+
+}
+
+node /nozzle_worker/ ineherits base {
 	
 	class {'nozzle::worker':
 	}
-
+}
