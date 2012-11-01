@@ -14,7 +14,8 @@ class nozzle::haproxy {
 	file {'/etc/haproxy/haproxy.cfg':
 		source	=> 'puppet:///modules/nozzle/haproxy.cfg',
 		replace =>  false,
-		require	=> Package['haproxy']
+		require	=> Package['haproxy'],
+		notify	=> Class['nozzle::worker']
 }
     
     exec {'set_haproxy_default':
