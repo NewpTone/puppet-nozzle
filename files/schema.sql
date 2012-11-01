@@ -1,4 +1,4 @@
-CREATE TABLE `load_balancers` (
+CREATE TABLE IF NOT EXISTS `load_balancers` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE `load_balancers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `load_balancer_configs` (
+CREATE TABLE IF NOT EXISTS `load_balancer_configs` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `load_balancer_configs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
-CREATE TABLE `load_balancer_domains` (
+CREATE TABLE IF NOT EXISTS `load_balancer_domains` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `load_balancer_domains` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
-CREATE TABLE `load_balancer_instance_association` (
+CREATE TABLE IF NOT EXISTS `load_balancer_instance_association` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,

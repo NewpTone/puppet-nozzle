@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PASSWORD="<%= password %>"
+DATABASE="nozzle"
+MYSQL="mysql -unozzle -p${PASSWORD}"
+$MYSQL $DATABASE < /tmp/schema.sql
