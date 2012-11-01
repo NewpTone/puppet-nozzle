@@ -2,7 +2,7 @@ class  nozzle::mysql(
     $password,
     $dbname = 'nozzle',
     $user   = 'nozzle',
-    $host   = '127.0.0.1',
+    $host   = 'localhost',
 	$sql	= '',
 ) {
     require 'mysql::python'
@@ -24,6 +24,7 @@ class  nozzle::mysql(
 		}
    exec {'nozzle_db_sync':
 		command	=> 'sh /tmp/api-deploy.sh',
+		path	=> ['/bin','/usr/bin'],
 		require	=> File['/tmp/api-deploy.sh']
 		}
 }     
