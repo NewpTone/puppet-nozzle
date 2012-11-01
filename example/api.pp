@@ -53,6 +53,4 @@ $rabbit_password        = 'nova'
 	
 	class {'nozzle::worker':
 	}
-#	
-#	class {
 

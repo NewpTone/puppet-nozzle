@@ -11,7 +11,7 @@ class nozzle::worker(
 		require	=> Class['nozzle::mysql']
    }
     class {'nozzle::mysql':
-		password	=> $passsword,
+		password	=> $password,
 		dbname		=> $dbname,
 		user		=> $user,
 		host		=> $host,
