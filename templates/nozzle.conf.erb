@@ -21,6 +21,8 @@ rabbit_password= <%= rabbit_password %>
 notification_driver=nozzle.openstack.common.notifier.rabbit_notifier
 notification_topics=loadbalancer
 control_exchange=nova
+tcp_postfixs= <%=tcp_postfixs%>
+http_postfixs = <%=http_postfixs%>
 
 [nginx]
 listen = 127.0.0.1:80

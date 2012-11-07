@@ -12,7 +12,10 @@ class nozzle(
         $rabbit_password        = 'nova',
 		$listen                   = '127.0.0.1',
 		$listen_port_range        = '10000,61000',
+		# Need to mkdir? talk to ljj 
 		$configuration_backup_dir = '/var/lib/nozzle/backup/haproxy',
+		$tcp_postfixs			  = '',
+		$http_postfixs			  = '',
 ){
   include 'concat::setup'
 
@@ -62,6 +65,8 @@ class nozzle(
         nova_admin_auth_url    => $nova_admin_auth_url,
         rabbit_userid          => $rabbit_userid,
         rabbit_password        => $rabbit_password,
+		tcp_postfixs		   => $tcp_postfixs,
+		http_postfixs		   => $http_postfixs
         }, 
         order   => '00', 
 	}

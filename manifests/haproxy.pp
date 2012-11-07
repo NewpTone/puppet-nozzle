@@ -2,7 +2,7 @@ class nozzle::haproxy {
     package { 'haproxy':
         ensure => installed,
     }
-
+    # TODO there is problem, when update,it will mv the using haproxy.cfg the original if the server is not installed by puppet before.
 	exec {'modify_haprxoy':
 		command	=> "mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.orginal",
 		path	=> ['/usr/bin/', '/sbin','/bin'],

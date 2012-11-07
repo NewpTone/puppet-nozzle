@@ -4,7 +4,7 @@ define nozzle::config(
   $order     = undef,
   $target	 = '/etc/nozzle/nozzle.conf'
 ) {
-  concat::fragment { "kestone-${name}":
+  concat::fragment { "nozzle-${name}":
     target  => $target,
     content => $content,
     order   => $order,
