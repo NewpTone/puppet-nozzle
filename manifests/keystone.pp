@@ -3,7 +3,7 @@ class nozzle::keystone (
     $enabled            = true,
     $ensure             = present,
 #    $id ,
-    $name				= 'nozzle',
+    $nozzle_name		= 'nozzle',
     $password			= 'nozzle',
     $tenant             = 'services',
     $public_address     = '127.0.0.1',                                                 
@@ -14,19 +14,22 @@ class nozzle::keystone (
     $region             = 'RegionOne',
 ) {
 
-    keystone_user {$name:
+    keystone_user {$nozzle_name:
        ensure   => $ensure,
        password => $password,
     }
-    keystone_user_role { "${name}@services":
+
+    keystone_user_role { "${nozzle_name}@services":
        ensure  => present,                                                         
        roles   => 'admin', 
     }
+
     keystone_service { $auth_name:                                                   
         ensure      => present,                                                        
-        type        => 'loadbalance',                                                                  
+        type        => 'loadbalance', 
         description => "Openstack LoadBalance Service",                                 
     } 
+
     keystone_endpoint { $auth_name:                                               
         ensure       => present,                                                    
         region       => $region,                                                    
