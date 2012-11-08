@@ -23,6 +23,7 @@ class nozzle::keystone::auth (
     keystone_user_role { "${auth_name}@services":
        ensure  => present,
        roles   => 'admin',
+	   require => Keystone_user["$auth_name"]
     }
     keystone_service { $auth_name:
         ensure      => present, 
