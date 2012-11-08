@@ -28,10 +28,10 @@ class nozzle::keystone::auth (
        roles   => 'admin', 
     }
 
-    keystone_service { $nozzle_name:   
-        ensure      => present,                                                        
+    keystone_service { $nozzle_name:
+        ensure      => present, 
         type        => 'loadbalance', 
-        description => "Openstack LoadBalance Service",                                 
+        description => "Openstack LoadBalance Service",
     } 
 
     keystone_endpoint { "${region}/${nozzle_name}": 
