@@ -21,10 +21,9 @@ class nozzle::keystone::auth (
        ensure   => $ensure,
        password => $password,
 	   email	=> $email,
-	   tenant	=> $tenant,
     }
 
-    keystone_user_role { "${nozzle_name}@services":
+    keystone_user_role { "${nozzle_name}@${tenant}":
        ensure  => present,                                                         
        roles   => 'admin', 
     }
