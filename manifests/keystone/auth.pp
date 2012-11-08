@@ -1,4 +1,4 @@
-class nozzle::keystone (
+class nozzle::keystone::auth (
     $email              = 'nozzle@sws.com',
     $enabled            = true,
     $ensure             = present,
