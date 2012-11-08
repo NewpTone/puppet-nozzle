@@ -20,6 +20,8 @@ class nozzle::keystone (
     keystone_user {$nozzle_name:
        ensure   => $ensure,
        password => $password,
+	   email	=> $email,
+	   tenant	=> $tenant,
     }
 
     keystone_user_role { "${nozzle_name}@services":
@@ -27,7 +29,7 @@ class nozzle::keystone (
        roles   => 'admin', 
     }
 
-    keystone_service { ${nozzle_name}:                                                   
+    keystone_service { $nozzle_name:   
         ensure      => present,                                                        
         type        => 'loadbalance', 
         description => "Openstack LoadBalance Service",                                 
