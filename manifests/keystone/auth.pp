@@ -35,7 +35,7 @@ class nozzle::keystone::auth (
         description => "Openstack LoadBalance Service",                                 
     } 
 
-    keystone_endpoint { $nozzle_name: 
+    keystone_endpoint { "${region}/${nozzle_name}": 
         ensure       => present, 
         region       => $region, 
         public_url   => "http://${public_address}:${loadbalance_port}/${loadbalance_version}", 
