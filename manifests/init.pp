@@ -1,21 +1,23 @@
 class nozzle(
-        $api_listen             = '0.0.0.0',
-        $server_listen          = '0.0.0.0',
-        $broadcast_listen       = '127.0.0.1',
-        $feedback_listen        = '127.0.0.1',
-        $sql_connection         = '', 
+        $api_listen							= '0.0.0.0',
+        $server_listen						= '0.0.0.0',
+        $broadcast_listen					= '127.0.0.1',
+        $feedback_listen					= '127.0.0.1',
+        $sql_connection						= '', 
         $nova_admin_username ,
         $nova_admin_password ,
-        $nova_admin_tenant_name = 'services',
-        $nova_admin_auth_url    = 'http://localhost:5000/v2.0',
-        $rabbit_userid          = 'guest',
-        $rabbit_password        = 'nova',
-		$listen                   = '127.0.0.1',
-		$listen_port_range        = '10000,61000',
-		# Need to mkdir? talk to ljj 
-		$configuration_backup_dir = '/var/lib/nozzle/backup/haproxy',
-		$tcp_postfixs			  = '',
-		$http_postfixs			  = '',
+        $nova_admin_tenant_name				= 'services',
+        $nova_admin_auth_url				= 'http://localhost:5000/v2.0',
+		$rabbit_host						= '127.0.0.1',
+		$rabbit_port						= '5672',
+        $rabbit_userid						= 'guest',
+        $rabbit_password					= 'nova',
+		$listen								= '127.0.0.1',
+		$listen_port_range					= '10000,61000',
+		$haproxy_configuration_backup_dir   = '/var/lib/nozzle/backup/haproxy',
+		$nginx_configuration_backup_dir     = '/var/lib/nozzle/backup/nginx'
+		$tcp_postfixs						= '.elb4.sinasws.com',
+		$http_postfixs						= '.elb7.sinasws.com',
 ){
   include 'concat::setup'
 
@@ -63,6 +65,8 @@ class nozzle(
         nova_admin_password    => $nova_admin_password,
         nova_admin_tenant_name => $nova_admin_tenant_name,
         nova_admin_auth_url    => $nova_admin_auth_url,
+		rabbit_host			   => $rabbit_host,
+		rabbit_port			   => $rabbit_port,
         rabbit_userid          => $rabbit_userid,
         rabbit_password        => $rabbit_password,
 		tcp_postfixs		   => $tcp_postfixs,
@@ -77,7 +81,7 @@ class nozzle(
 	config  =>  {
 		'listen'                    =>  $::listen,
 		'listen_port_range'         =>  $::listen_port_range,
-		'configuration_backup_dir'  =>  $::configuration_backup_dir,
+		'configuration_backup_dir'  =>  $::haproxy_configuration_backup_dir,
 	},  
 	order   => '02',
  }  

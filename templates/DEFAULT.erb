@@ -1,9 +1,13 @@
 [DEFAULT]
 verbose=True
+
+## config nozzle-api
 api_paste_config = api-paste.ini
 auth_strategy = keystone
 api_listen = <%= api_listen %>
 api_listen_port = 5556
+
+## config nozzle-server
 server_listen = <%= server_listen %>
 server_listen_port = 5557
 broadcast_listen = <%= broadcast_listen %>
@@ -11,13 +15,34 @@ broadcast_listen_port = 5558
 feedback_listen = <%= feedback_listen %>
 feedback_listen_port = 5559
 sql_connection= <%= sql_connection %>
+
+# dns postfix for tcp protocol
+tcp_postfixs = <%= tcp_postfixs %>
+
+# dns postfix for http protocol
+http_postfixs = <%= http_postfixs %>
+
+# config how to connect to nova-api
 nova_admin_username= <%= nova_admin_username %>
 nova_admin_password= <%= nova_admin_password  %>
 nova_admin_tenant_name= <%= nova_admin_tenant_name %>
 nova_admin_auth_url= <%= nova_admin_auth_url  %>
 nova_region_name=RegionOne
-rabbit_userid= <%= rabbit_userid  %>
-rabbit_password= <%= rabbit_password %>
+
+# config rabbitmq notification
 notification_driver=nozzle.openstack.common.notifier.rabbit_notifier
 notification_topics=loadbalancer
 control_exchange=nova
+# IP address of the RabbitMQ installation
+rabbit_host = <%= rabbit_host %>
+# Port where RabbitMQ server is running/listening
+rabbit_port = <%= rabbit_port %>
+# User ID used for RabbitMQ connections
+rabbit_userid= <%= rabbit_userid %>
+# Password of the RabbitMQ server
+rabbit_password= <%= rabbit_password %>
+# Location of a virtual RabbitMQ installation.
+# rabbit_virtual_host = /
+
+
+
