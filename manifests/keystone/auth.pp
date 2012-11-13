@@ -16,6 +16,7 @@
 #
 class nozzle::keystone::auth(
   $auth_name          = 'nozzle',
+  $tenant			  = 'services',
   $password           = 'nozzle',
   $configure_endpoint = true,
   $service_type       = 'loadbalance',
@@ -26,15 +27,15 @@ class nozzle::keystone::auth(
   $region             = 'RegionOne'
 ) {
 
-  Keystone_user["$auth_name"] ~> Keystone_user_role["${auth_name}@services"] ~> Service <| name == 'nozzle-server' |>
-  Keystone_user["$auth_name"] ~> Keystone_user_role["${auth_name}@services"] ~> Service <| name == 'nozzle-api' |>
+  Keystone_user["$auth_name"] ~> Keystone_user_role["${auth_name}@${tenant}"] ~> Service <| name == 'nozzle-server' |>
+  Keystone_user["$auth_name"] ~> Keystone_user_role["${auth_name}@${tenant}"] ~> Service <| name == 'nozzle-api' |>
 
   keystone_user { $auth_name:
     ensure   => present,
     password => $password,
 	tenant   => 'services',
   }
-  keystone_user_role { "${auth_name}@services":
+  keystone_user_role { "${auth_name}@${tenant}":
     ensure  => present,
     roles   => 'admin',
   }
@@ -44,7 +45,7 @@ class nozzle::keystone::auth(
     description => "Openstack LoadBalance Service",
   }
   if $configure_endpoint {
-    keystone_endpoint { $auth_name:
+    keystone_endpoint { "${region}/$auth_name":
       ensure       => present,
       region       => $region,
       public_url   => "http://${public_address}:${port}/v1.0",
