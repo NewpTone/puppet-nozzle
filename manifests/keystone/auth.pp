@@ -26,12 +26,13 @@ class nozzle::keystone::auth(
   $region             = 'RegionOne'
 ) {
 
-  Keystone_user_role["${auth_name}@services"] ~> Service <| name == 'nozzle-server' |>
-  Keystone_user_role["${auth_name}@services"] ~> Service <| name == 'nozzle-api' |>
+  Keystone_user["$auth_name"] ~> Keystone_user_role["${auth_name}@services"] ~> Service <| name == 'nozzle-server' |>
+  Keystone_user["$auth_name"] ~> Keystone_user_role["${auth_name}@services"] ~> Service <| name == 'nozzle-api' |>
 
   keystone_user { $auth_name:
     ensure   => present,
     password => $password,
+	tenant   => 'services',
   }
   keystone_user_role { "${auth_name}@services":
     ensure  => present,
