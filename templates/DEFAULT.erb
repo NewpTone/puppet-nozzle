@@ -27,7 +27,7 @@ nova_admin_username= <%= nova_admin_username %>
 nova_admin_password= <%= nova_admin_password  %>
 nova_admin_tenant_name= <%= nova_admin_tenant_name %>
 nova_admin_auth_url= <%= nova_admin_auth_url  %>
-nova_region_name=RegionOne
+nova_region_name=<%=nova_region_name%>
 
 # config rabbitmq notification
 notification_driver=nozzle.openstack.common.notifier.rabbit_notifier

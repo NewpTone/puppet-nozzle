@@ -69,9 +69,11 @@ class {'nozzle::server':
 
 	class {'nozzle::worker':
 	}
-	class { 'nozzle::keystone':
+	class { 'nozzle::auth::keystone':
 		name			=> $nozzle_name,
 		password		=> $nozzle_passwd,
 		tenant			=> $nozzle_tenant,
 		public_address	=> $nozzle_public_address,
+}
+
 }

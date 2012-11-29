@@ -8,6 +8,7 @@ class nozzle(
         $nova_admin_password ,
         $nova_admin_tenant_name				= 'services',
         $nova_admin_auth_url				= 'http://localhost:5000/v2.0',
+		$nova_region_name					= 'RegionOne',
 		$rabbit_host						= '127.0.0.1',
 		$rabbit_port						= '5672',
         $rabbit_userid						= 'guest',
@@ -71,6 +72,7 @@ class nozzle(
         rabbit_password        => $rabbit_password,
 		tcp_postfixs		   => $tcp_postfixs,
 		http_postfixs		   => $http_postfixs
+		nova_region_name	   => $nova_region_name,
         }, 
         order   => '00', 
 	}
