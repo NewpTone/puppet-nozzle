@@ -26,9 +26,13 @@ $user = 'nozzle'
 $host = 'localhost'
 $dbname = 'nozzle'
 $password = 'nozzle'
+#Nozzle keystone 
+$nozzle_name = 'nozzle'
+$nozzle_passwd = 'nozzle'
+$nozzle_public_url = '127.0.0.1'
+$nozzle_tenant = 'services'
 
-
-node /base/ {
+node /nozzle_all/ {
 	class  {'nozzle':
 		api_listen             => $api_listen, 
         server_listen          => $server_listen,
@@ -45,9 +49,7 @@ node /base/ {
 	    listen_port_range         =>  $listen_port_range,
 	    configuration_backup_dir  =>  $configuration_backup_dir,	
 	}
-}
 
-node /noozle_controller/ inherits base {
     class {'nozzle::api':
 		auth_host          =>  $api_auth_host,
         auth_port          =>  $api_auth_port,
@@ -65,10 +67,13 @@ class {'nozzle::server':
 		password => $password,
 	}
 
-}
-
-node /nozzle_worker/ ineherits base {
-	
 	class {'nozzle::worker':
 	}
+	class { 'nozzle::auth::keystone':
+		name			=> $nozzle_name,
+		password		=> $nozzle_passwd,
+		tenant			=> $nozzle_tenant,
+		public_address	=> $nozzle_public_address,
+}
+
 }

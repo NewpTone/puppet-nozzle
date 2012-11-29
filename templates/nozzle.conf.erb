@@ -1,0 +1,36 @@
+[DEFAULT]
+verbose=True
+api_paste_config = api-paste.ini
+auth_strategy = keystone
+api_listen = <%= api_listen %>
+api_listen_port = 5556
+server_listen = <%= server_listen %>
+server_listen_port = 5557
+broadcast_listen = <%= broadcast_listen %>
+broadcast_listen_port = 5558
+feedback_listen = <%= feedback_listen %>
+feedback_listen_port = 5559
+sql_connection= <%= sql_connection %>
+nova_admin_username= <%= nova_admin_username %>
+nova_admin_password= <%= nova_admin_password  %>
+nova_admin_tenant_name= <%= nova_admin_tenant_name %>
+nova_admin_auth_url= <%= nova_admin_auth_url  %>
+nova_region_name=RegionOne
+rabbit_userid= <%= rabbit_userid  %>
+rabbit_password= <%= rabbit_password %>
+notification_driver=nozzle.openstack.common.notifier.rabbit_notifier
+notification_topics=loadbalancer
+control_exchange=nova
+tcp_postfixs= <%=tcp_postfixs%>
+http_postfixs = <%=http_postfixs%>
+
+[nginx]
+listen = 127.0.0.1:80
+access_log_dir = /var/log/nginx
+configuration_backup_dir = /var/lib/nozzle/backup/nginx
+
+
+[haproxy]
+listen = <%= listen %>
+listen_port_range = 10000,61000
+configuration_backup_dir = /var/lib/nozzle/backup/haproxy
