@@ -71,7 +71,7 @@ class nozzle(
         rabbit_userid          => $rabbit_userid,
         rabbit_password        => $rabbit_password,
 		tcp_postfixs		   => $tcp_postfixs,
-		http_postfixs		   => $http_postfixs
+		http_postfixs		   => $http_postfixs,
 		nova_region_name	   => $nova_region_name,
         }, 
         order   => '00', 
