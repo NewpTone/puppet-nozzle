@@ -24,13 +24,13 @@ control_exchange=nova
 tcp_postfixs= <%=tcp_postfixs%>
 http_postfixs = <%=http_postfixs%>
 
-[nginx]
-listen = <%= nginx_listen %>
-access_log_dir = /var/log/nginx
-configuration_backup_dir = /var/lib/nozzle/backup/nginx
-
-
-[haproxy]
-listen = <%= listen %>
-listen_port_range = 10000,61000
-configuration_backup_dir = /var/lib/nozzle/backup/haproxy
+#[nginx]
+#listen = <%= nginx_listen %>
+#access_log_dir = /var/log/nginx
+#configuration_backup_dir = /var/lib/nozzle/backup/nginx
+#
+#
+#[haproxy]
+#listen = <%= listen %>
+#listen_port_range = 10000,61000
+#configuration_backup_dir = /var/lib/nozzle/backup/haproxy
