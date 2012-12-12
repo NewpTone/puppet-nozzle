@@ -13,6 +13,7 @@ class nozzle(
 		$rabbit_port						= '5672',
         $rabbit_userid						= 'guest',
         $rabbit_password					= 'nova',
+        $nginx_listen                       = '127.0.0.1:80',
 		$listen								= '127.0.0.1',
 		$listen_port_range					= '10000,61000',
 		$haproxy_configuration_backup_dir   = '/var/lib/nozzle/backup/haproxy',
@@ -78,6 +79,7 @@ class nozzle(
 	}
   nozzle::config {'nginx':
 		order	=> '01',
+        'nginx_listen'          => $nginx_listen,
 	}
   nozzle::config { 'haproxy':
 	config  =>  {
