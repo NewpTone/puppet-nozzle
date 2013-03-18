@@ -78,8 +78,10 @@ class nozzle(
         order   => '00', 
 	}
   nozzle::config {'nginx':
+    config => {
+        listen      => $nginx_listen,
+        },
 		order	=> '01',
-        'nginx_listen'          => $nginx_listen,
 	}
   nozzle::config { 'haproxy':
 	config  =>  {
