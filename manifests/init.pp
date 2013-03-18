@@ -13,6 +13,7 @@ class nozzle(
 		$rabbit_port						= '5672',
         $rabbit_userid						= 'guest',
         $rabbit_password					= 'nova',
+        $notification_enabled               = 'True',
         $nginx_listen                       = '127.0.0.1:80',
 		$listen								= '127.0.0.1',
 		$listen_port_range					= '10000,61000',
@@ -20,6 +21,7 @@ class nozzle(
 		$nginx_configuration_backup_dir     = '/var/lib/nozzle/backup/nginx',
 		$tcp_postfixs						= '.elb4.sinasws.com',
 		$http_postfixs						= '.elb7.sinasws.com',
+        $service_interface                  = 'eth0',
 ){
   include 'concat::setup'
 
@@ -53,7 +55,6 @@ class nozzle(
     group   => 'nozzle',
     mode    => '0600',
     require => Package['python-nozzle'],
-#    notify  => Service['nozzle-api','nozzle-server'],
   }
 # default section
   nozzle::config { 'DEFAULT':
@@ -83,13 +84,19 @@ class nozzle(
         },
 		order	=> '01',
 	}
+  nozzle::config {'worker':
+    config => {
+        'service_interface'     => $service_interface,
+        },
+        order   => '02',
+    }
   nozzle::config { 'haproxy':
 	config  =>  {
 		'listen'                    =>  $::listen,
 		'listen_port_range'         =>  $::listen_port_range,
 		'configuration_backup_dir'  =>  $haproxy_configuration_backup_dir,
-	},  
-	order   => '02',
- }  
+	    },  
+	order   => '03',
+    }  
 
-}
+ }

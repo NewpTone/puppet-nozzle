@@ -16,7 +16,7 @@ class nozzle::haproxy {
 		replace =>  false,
 		require	=> Package['haproxy'],
 		notify	=> Class['nozzle::worker']
-}
+    }
     
     exec {'set_haproxy_default':
         command =>  "sed -i -e 's/^ENABLED=.*/ENABLED=1/' /etc/default/haproxy",

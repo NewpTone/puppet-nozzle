@@ -23,16 +23,18 @@ tcp_postfixs = <%= tcp_postfixs %>
 http_postfixs = <%= http_postfixs %>
 
 # config how to connect to nova-api
-nova_admin_username= <%= nova_admin_username %>
-nova_admin_password= <%= nova_admin_password  %>
-nova_admin_tenant_name= <%= nova_admin_tenant_name %>
-nova_admin_auth_url= <%= nova_admin_auth_url  %>
-nova_region_name=<%=nova_region_name%>
+nova_admin_username = <%= nova_admin_username %>
+nova_admin_password = <%= nova_admin_password  %>
+nova_admin_tenant_name = <%= nova_admin_tenant_name %>
+nova_admin_auth_url = <%= nova_admin_auth_url  %>
+nova_region_name = <%=nova_region_name%>
 
 # config rabbitmq notification
+notification_enabled = <%= notification_enabled %>
 notification_driver=nozzle.openstack.common.notifier.rabbit_notifier
 notification_topics=loadbalancer
 control_exchange=nova
+
 # IP address of the RabbitMQ installation
 rabbit_host = <%= rabbit_host %>
 # Port where RabbitMQ server is running/listening
@@ -42,7 +44,7 @@ rabbit_userid= <%= rabbit_userid %>
 # Password of the RabbitMQ server
 rabbit_password= <%= rabbit_password %>
 # Location of a virtual RabbitMQ installation.
-# rabbit_virtual_host = /
+ rabbit_virtual_host = /
 
 
 
