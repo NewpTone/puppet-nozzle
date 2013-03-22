@@ -23,7 +23,7 @@ class  nozzle::mysql(
 		require   => Database[$dbname]
 		}
    exec {'nozzle_db_sync':
-		command	=> 'sh /tmp/api-deploy.sh',
+		command	=> '/bin/sh /tmp/api-deploy.sh',
 		path	=> ['/bin','/usr/bin'],
 		require	=> File['/tmp/api-deploy.sh']
 		}
