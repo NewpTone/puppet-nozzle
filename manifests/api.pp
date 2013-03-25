@@ -13,4 +13,8 @@ class nozzle::api (
 		content => template('nozzle/api-paste.ini.erb'),
 		require	=> Package['nozzle-api']
   }
+    file {'/var/cache/nozzle':
+        ensure => directory,
+        mode   => '0744',
+        }
 }
