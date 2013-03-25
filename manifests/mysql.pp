@@ -16,7 +16,7 @@ class  nozzle::mysql(
   }
    file { '/tmp/api-deploy.sh':
 		content => template('nozzle/api-deploy.sh.erb'),
-		#require	=> File['/tmp/schema.sql']
+        mode    => '0744',
 		}
    file {'/tmp/schema.sql':
 		source	=> 'puppet:///modules/nozzle/schema.sql',
@@ -25,7 +25,6 @@ class  nozzle::mysql(
    exec {'nozzle_db_sync':
 		command	=> '/bin/sh /tmp/api-deploy.sh',
 		path	=> ['/bin','/usr/bin'],
-		#require	=> File['/tmp/api-deploy.sh']
 		}
      File['/tmp/api-deploy.sh'] -> File['/tmp/schema.sql'] -> Exec['nozzle_db_sync']
 }     

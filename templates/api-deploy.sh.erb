@@ -2,5 +2,6 @@
 
 PASSWORD="<%= password %>"
 DATABASE="nozzle"
-MYSQL="mysql -unozzle -p${PASSWORD}"
+host="<%= host %>"
+MYSQL="mysql -unozzle -p${PASSWORD} -h${host}"
 $MYSQL $DATABASE < /tmp/schema.sql
